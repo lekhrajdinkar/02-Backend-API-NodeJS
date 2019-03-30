@@ -1,27 +1,11 @@
 const http = require('http');
 const fs = require('fs');
+const route = require('./routes')
+
 
 //creating server
-const server = http.createServer( (req, res) => {
-
-    res.setHeader('Content-Type', 'text/html');
-
-    if (req.url === '/welcome'){
-        console.log("--- 1 ---");
-        console.log(req.headers, req.url, req.method, req.body)
-        fs.writeFileSync("./001temp/welcome.txt", );
-        res.write('<html><body><h1>Welome to NodeJs welcome page </h1></body></html>');
-        res.end();
-    }
-
-    if (req.url === '/'){
-        console.log("--- 2 ---");
-        console.log(req.headers, req.url, req.method, req.body)
-        fs.writeFileSync("./001temp/root.txt", 'sssssssssss');
-        res.write('<html><body><h1>Welome to NodeJs</h1></body></html>');
-        res.end();
-    }
-})
+//more cleaner code because of route
+const server = http.createServer( route )
 
 console.log('--- First node prg ----');
 server.listen(3000);
