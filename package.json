@@ -3,13 +3,16 @@
   "version": "10.0.0",
   "description": "TACT backend",
   "main": "001temp/app.js",
-  "dependencies": {},
+  "dependencies": {
+    "express": "^4.16.4"
+  },
   "devDependencies": {
     "nodemon": "^1.18.10"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start-tact": "nodemon 001temp/app.js"
+    "start-tact": "nodemon app.js",
+    "start-test": "nodemon 001temp/app.js"
   },
   "repository": {
     "type": "git",
