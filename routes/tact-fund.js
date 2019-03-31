@@ -53,6 +53,7 @@ router.get('/funds/:abbr/:num',(req,resp,next)=> {
     resp.send(funds);
 });
 
+//----------- FS ---------------------
 //store in JSON file not in Mongo
 router.get('/add-fund-data/:abbr/:num',(req,resp,next)=> {
     
@@ -60,6 +61,18 @@ router.get('/add-fund-data/:abbr/:num',(req,resp,next)=> {
     console.log('writing to json file', f.abbr, f.num);
     f.save(f);
     resp.sendFile(path.join(path.dirname(process.mainModule.filename), 'data', 'fund-data.json'));
+});
+
+//read from JSON file not in Mongo
+// NOTE : Need re work - unable to get array from cb and senf via resp.
+router.get('/fund-data',(req,resp,next)=> {
+    
+    //way1 - directly send file contect
+    //resp.sendFile(path.join(path.dirname(process.mainModule.filename), 'data', 'fund-data.json'));
+
+    //way2 - read json file and parse them into JS array/obj. send that then. 
+    const ret =   fundJsonData.fetchAll();// incorrecr logic, it return void.
+    resp.send(ret)
 });
 
 

@@ -8,8 +8,18 @@ module.exports = class FundData
         this.num = num;
     }
 
-    fetchAll(){
-        return
+     static fetchAll(){
+        const p = path.join(path.dirname(process.mainModule.filename), 'data', 'fund-data.json');
+
+         let ret = fs.readFile(p, (err, content) => {
+            if(err) console.log(err);
+            else {
+                let temp = JSON.parse(content);
+                console.log('json file after parse', temp);
+                //cb(temp);
+            }
+
+        })
     }
 
     save(f){
