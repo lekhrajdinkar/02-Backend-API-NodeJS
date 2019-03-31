@@ -11,13 +11,13 @@ const app = express();
 app.use(bp.urlencoded()); //bp will parse body and create json object.
 
 //mwe1 - for all url
-app.use((req,resp,next)=> {console.log('mwe function1'); next();});
+app.use((req,resp,next)=> {console.log('mwe function 1', req.body, req.url); next();});
 
 //mwe2 - dummy
 app.use(
 '/mwe2',
-(req,resp,next)=> {console.log('mwe function2.1'); next();}, 
-(req,resp,next)=> {console.log('mwe function2.2'); next();}
+(req,resp,next)=> {console.log('mwe function 2.1'); next();}, 
+(req,resp,next)=> {console.log('mwe function 2.2'); next();}
 );
 
 //mwe3 - tact
