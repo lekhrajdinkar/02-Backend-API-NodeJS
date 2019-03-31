@@ -1,7 +1,10 @@
 const express  = require('express');
 const router = express.Router();
+const bp = require('body-parser');
+
 
 //-------------
+//in-memory storage.
 const funds = [
 {fund_number : '11000014', fund_abbr : 'abbr14'}, 
 {fund_number : '11000020', fund_abbr : 'abbr20'}
@@ -21,19 +24,30 @@ router.get('/fund-status',(req,resp,next)=> {
 });
 
 router.get('/funds',(req,resp,next)=> {
+    console.log('/tact/funds get',req.body);
     //resp.redirect('./status2')
     //resp.send(JSON.stringify(funds)); 
     resp.send(funds); //same as above.
     // [{"fund_number":"11000014","fund_abbr":"abbr14"},{"fund_number":"11000020","fund_abbr":"abbr20"}]
 });
 
-router.get('/fund/:abbr/:num',(req,resp,next)=> {
-    funds.push({fund_number : req.params.num, fund_abbr : req.params.abbr});
+router.post('/add-fund-1',(req,resp,next)=> {
+    console.log('/tact/funds post',req.body);
+    funds.push({fund_number : req.body.num, fund_abbr : req.body.abbr});
     resp.send(funds);
 });
 
-router.post('/fund',(req,resp,next)=> {
+//below route would take input from form body which come as url-encoded string.
+router.use(bp.urlencoded());
+router.post('/add-fund-2',(req,resp,next)=> {
+    console.log('/tact/funds post',req.body);
     funds.push({fund_number : req.body.num, fund_abbr : req.body.abbr});
+    resp.send(funds);
+});
+
+router.get('/funds/:abbr/:num',(req,resp,next)=> {
+    console.log('/funds/a/b get',req.body);
+    funds.push({fund_number : req.params.num, fund_abbr : req.params.abbr});
     resp.send(funds);
 });
 
