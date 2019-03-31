@@ -24,11 +24,11 @@ module.exports = class FundData
             if(!err) {
                 //3. convert json into js array
                 temp = JSON.parse(content); //json to array/js object
-                console.log('JSON.parse(content) : ',temp, f);
+                //console.log('JSON.parse(content) : ',temp, f);
              }
              //4. push ciurrent item in array
              temp.push(f);
-             console.log('after push: ',temp);
+             //console.log('after push: ',temp);
 
              //store  array into json file
              fs.writeFile(p,JSON.stringify(temp), (err)=> console.log(err));

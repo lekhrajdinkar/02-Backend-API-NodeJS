@@ -1,4 +1,5 @@
 const express  = require('express');
+const path = require('path');
 const router = express.Router();
 const bp = require('body-parser');
 const fundJsonData = require('../data/fund-data')
@@ -58,7 +59,7 @@ router.get('/add-fund-data/:abbr/:num',(req,resp,next)=> {
     let f = new fundJsonData(req.params.abbr, req.params.num );
     console.log('writing to json file', f.abbr, f.num);
     f.save(f);
-    resp.end();
+    resp.sendFile(path.join(path.dirname(process.mainModule.filename), 'data', 'fund-data.json'));
 });
 
 
