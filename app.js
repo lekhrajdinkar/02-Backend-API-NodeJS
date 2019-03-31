@@ -12,7 +12,7 @@ const app = express();
 
 // config
 console.log('Application name - ' , config.get('app-name'));
-console.log(app.get('env'), 'Developer name - ' , config.get('developer.name'));
+console.log( 'Developer name - ' , config.get('developer.name'), '| app password reading from env var : ', config.get('email.password'));
 //app.set('env', 'dev1');
 
 app.set('view engine','pug'); app.set('view', './views'); // Configuring  template engine for express.
