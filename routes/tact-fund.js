@@ -1,6 +1,7 @@
 const express  = require('express');
 const router = express.Router();
 const bp = require('body-parser');
+const fundJsonData = require('../data/fund-data')
 
 
 //-------------
@@ -50,5 +51,15 @@ router.get('/funds/:abbr/:num',(req,resp,next)=> {
     funds.push({fund_number : req.params.num, fund_abbr : req.params.abbr});
     resp.send(funds);
 });
+
+//store in JSON file not in Mongo
+router.get('/add-fund-data/:abbr/:num',(req,resp,next)=> {
+    
+    let f = new fundJsonData(req.params.abbr, req.params.num );
+    console.log('writing to json file', f.abbr, f.num);
+    f.save(f);
+    resp.end();
+});
+
 
 module.exports = router ;
