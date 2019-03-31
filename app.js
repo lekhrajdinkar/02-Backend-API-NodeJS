@@ -1,18 +1,29 @@
 const express = require('express');
 const http = require('http');
+const bp = require('body-parser');
+const tactRouteAuth = require('./routes/tact-auth');
 
 //express
 const app = express();
 
 //add express middleware.
-//mwe1
+
+app.use(bp.urlencoded()); //bp will parse body and create json object.
+
+//mwe1 - for all url
 app.use((req,resp,next)=> {console.log('mwe function1'); next();});
-//mwe2
-app.use((req,resp,next)=> {console.log('mwe function2'); next();});
-//mwe3
-app.use((req,resp,next)=> {console.log('mwe function3')});
+
+//mwe2 - dummy
+app.use(
+'/mwe2',
+(req,resp,next)=> {console.log('mwe function2.1'); next();}, 
+(req,resp,next)=> {console.log('mwe function2.2'); next();}
+);
+
+//mwe3 - tact
+app.use('/tact', tactRouteAuth);
 
 
-
-const server = http.createServer(app);
-server.listen(4000);
+app.listen(4000);
+//const server = http.createServer(app);
+//server.listen(4000);

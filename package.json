@@ -4,6 +4,7 @@
   "description": "TACT backend",
   "main": "001temp/app.js",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "express": "^4.16.4"
   },
   "devDependencies": {
