@@ -1,6 +1,7 @@
 const express = require('express');
 const http = require('http');
-
+const morgan = require('morgan');
+const config = require('config');
 
 //local import
 const tactRouteAuth = require('./routes/tact-auth');
@@ -8,6 +9,19 @@ const tactRouteFund = require('./routes/tact-fund');
 
 //express
 const app = express();
+
+// config
+console.log('Application name - ' , config.get('app-name'));
+console.log(app.get('env'), 'Developer name - ' , config.get('developer.name'));
+//app.set('env', 'dev1');
+
+app.set('view engine','pug'); app.set('view', './views'); // Configuring  template engine for express.
+
+// Adding 3rd party mwe - morgan for development only.
+if(app.get('env') !== 'development'){ //same as process.env.NODE_ENV
+    app.use(morgan('tiny'));
+    console.log('morgan enabled for ', app.get('env'));
+}
 
 //add express middleware.
 
