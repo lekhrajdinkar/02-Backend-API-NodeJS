@@ -71,8 +71,10 @@ router.get('/fund-data',(req,resp,next)=> {
     //resp.sendFile(path.join(path.dirname(process.mainModule.filename), 'data', 'fund-data.json'));
 
     //way2 - read json file and parse them into JS array/obj. send that then. 
-    const ret =   fundJsonData.fetchAll();// incorrecr logic, it return void.
-    resp.send(ret)
+    const ret =   fundJsonData.fetchAll((ret) => {
+        resp.send(ret)
+    });
+    
 });
 
 

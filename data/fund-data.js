@@ -8,7 +8,7 @@ module.exports = class FundData
         this.num = num;
     }
 
-     static fetchAll(){
+     static fetchAll(cb){
         const p = path.join(path.dirname(process.mainModule.filename), 'data', 'fund-data.json');
 
          let ret = fs.readFile(p, (err, content) => {
@@ -16,7 +16,7 @@ module.exports = class FundData
             else {
                 let temp = JSON.parse(content);
                 console.log('json file after parse', temp);
-                //cb(temp);
+                cb(temp);
             }
 
         })
