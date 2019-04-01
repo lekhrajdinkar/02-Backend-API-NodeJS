@@ -20,7 +20,7 @@ class Fund {
 addFund = (fund) => {
     console.log(fund);
     const db = tactMongoDB();
-    db.collection('funds').insertOne(fund);
+    db.collection('funds').insertOne(fund).then(()=> {}).catch((err) => {});
 }
 
 //----------------
