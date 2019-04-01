@@ -2,6 +2,7 @@ const express = require('express');
 const http = require('http');
 const morgan = require('morgan');
 const config = require('config');
+const mongodb = require('./util/mongoDB')
 
 //local import
 const tactRouteAuth = require('./routes/tact-auth');
@@ -12,7 +13,7 @@ const app = express();
 
 // config
 console.log('Application name - ' , config.get('app-name'));
-console.log( 'Developer name - ' , config.get('developer.name'), '| app password reading from env var : ', config.get('email.password'));
+console.log( 'Developer name - ' , config.get('developer.name'), '| app email password reading from env var : ', config.get('email.password'));
 //app.set('env', 'dev1');
 
 app.set('view engine','pug'); app.set('view', './views'); // Configuring  template engine for express.
@@ -39,8 +40,13 @@ app.use(
 app.use('/tact', tactRouteAuth, tactRouteFund);
 //app.use('/tact', tactRouteFund);
 
+//If connected to DB then start listen to backend server
+mongodb.connect( (res) => {
 //adding dyanmic port
 const port = process.env.PORT  || 4000 ;
 app.listen(port);
 //const server = http.createServer(app);
 //server.listen(4000);
+})
+
+

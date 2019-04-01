@@ -6,5 +6,8 @@
     "email":{
         "host":"lekhrajdinkar@gmail.com",
         "password":"dummy"
+    },
+    "mongo" : {
+        "url":"mongodb+srv://lekhrajdinkar:unclechips@cluster0-jer1o.gcp.mongodb.net/test?retryWrites=true"
     }
 }
