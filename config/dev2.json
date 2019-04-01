@@ -1,0 +1,6 @@
+{
+    "app-name":"TACT-dev2",
+    "mongo":{
+        "url":"mongodb+srv://lekhrajdinkar:unclechips@cluster0-jer1o.gcp.mongodb.net/tact-dev2?retryWrites=true"
+    }
+}

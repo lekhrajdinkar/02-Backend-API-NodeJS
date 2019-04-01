@@ -9,7 +9,7 @@ module.exports = class FundData
     }
 
      static fetchAll(cb){
-        const p = path.join(path.dirname(process.mainModule.filename), 'data', 'fund-data.json');
+        const p = path.join(path.dirname(process.mainModule.filename), 'file', 'fund-data.json');
 
          let ret = fs.readFile(p, (err, content) => {
             if(err) console.log(err);
@@ -24,7 +24,7 @@ module.exports = class FundData
 
     save(f){
         //1.get json file
-        const p = path.join(path.dirname(process.mainModule.filename), 'data', 'fund-data.json');
+        const p = path.join(path.dirname(process.mainModule.filename), 'file', 'fund-data.json');
         console.log(p);
 
         //2. read json data

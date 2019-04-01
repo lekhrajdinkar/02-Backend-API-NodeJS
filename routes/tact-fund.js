@@ -2,7 +2,7 @@ const express  = require('express');
 const path = require('path');
 const router = express.Router();
 const bp = require('body-parser');
-const fundJsonData = require('../data/fund-data')
+const fundJsonData = require('../file/fund-data')
 
 
 //-------------
@@ -63,8 +63,7 @@ router.get('/add-fund-data/:abbr/:num',(req,resp,next)=> {
     resp.sendFile(path.join(path.dirname(process.mainModule.filename), 'data', 'fund-data.json'));
 });
 
-//read from JSON file not in Mongo
-// NOTE : Need re work - unable to get array from cb and senf via resp.
+//read from JSON file not in Mongo ********
 router.get('/fund-data',(req,resp,next)=> {
     
     //way1 - directly send file contect
