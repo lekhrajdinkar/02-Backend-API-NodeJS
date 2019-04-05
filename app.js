@@ -52,6 +52,10 @@ app.use('/tact', tactRouteAuth, tactRouteFund);
 //TACT app with mongo
 app.use('/tact2', fundRoutes);
 
+app.use('/', (req,resp,next)=> {
+    resp.send('<html><h1>status : TACT Server is running </h1></html>');
+});
+
 //If connected to DB then only start listen to backend server
 tactMongoDB.connect( () => {
 //adding dyanmic port
