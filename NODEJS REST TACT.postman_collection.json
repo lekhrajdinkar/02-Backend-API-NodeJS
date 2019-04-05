@@ -1,0 +1,517 @@
+{
+	"info": {
+		"_postman_id": "50b08038-6e4d-42dd-bbe7-fbef29ac3504",
+		"name": "NODEJS REST TACT",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "NODEJS REST TACT2",
+			"item": [
+				{
+					"name": "localhost:5000/tact2/add-fund",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n        \"num\": \"11000020\",\n        \"abbr\": \"abbr20\",\n        \"created_by\": \"INYSOV\"\n }"
+						},
+						"url": {
+							"raw": "https://tact-nodejs.herokuapp.com/tact2/add-fund",
+							"protocol": "https",
+							"host": [
+								"tact-nodejs",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"tact2",
+								"add-fund"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:5000/tact2/get-all-funds",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:5000/tact2/get-all-funds",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"tact2",
+								"get-all-funds"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:5000/tact2/get-latest-fund",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:5000/tact2/get-latest-fund",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"tact2",
+								"get-latest-fund"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:5000/tact2/get-fund/INYLBD",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:5000/tact2/get-fund/INYLBD",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"tact2",
+								"get-fund",
+								"INYLBD"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:5000/tact2/get-fund-by-Id",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"_id\" : \"5ca7af284702390f677cf008\"\n}"
+						},
+						"url": {
+							"raw": "localhost:5000/tact2/get-fund-by-Id",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"tact2",
+								"get-fund-by-Id"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:5000/tact2/delete-fund-byId",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"_id\": \"5ca7b98cd3445e119f67ffe4\"\n}"
+						},
+						"url": {
+							"raw": "localhost:5000/tact2/delete-fund-byId",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"tact2",
+								"delete-fund-byId"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:5000/tact2/update-fund-byId",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"_id\": \"5ca7af304702390f677cf009\",\n\t\"num\" : \"11000000\",\n\t\"abbr\" : \"abbr_new\"\n}"
+						},
+						"url": {
+							"raw": "localhost:5000/tact2/update-fund-byId",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"tact2",
+								"update-fund-byId"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TACT_NODE-Heroku",
+			"item": [
+				{
+					"name": "https://tact-nodejs.herokuapp.com/tact2/add-fund",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n        \"num\": \"11000020\",\n        \"abbr\": \"abbr20\",\n        \"created_by\": \"INYSOV\"\n }"
+						},
+						"url": {
+							"raw": "https://tact-nodejs.herokuapp.com/tact2/add-fund",
+							"protocol": "https",
+							"host": [
+								"tact-nodejs",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"tact2",
+								"add-fund"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "https://tact-nodejs.herokuapp.com/tact2/get-all-funds",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://tact-nodejs.herokuapp.com/tact2/get-all-funds",
+							"protocol": "https",
+							"host": [
+								"tact-nodejs",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"tact2",
+								"get-all-funds"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "localhost:5000/tact/add-fund-1",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"abbr\" : \"abbr32\",\n\"num\" : \"11000032\"\n}"
+				},
+				"url": {
+					"raw": "localhost:5000/tact/add-fund-1",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"tact",
+						"add-fund-1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:5000/tact/add-fund-2",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "abbr",
+							"value": "aaaa",
+							"type": "text"
+						},
+						{
+							"key": "num",
+							"value": "ssfdsfdf",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:5000/tact/add-fund-2",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"tact",
+						"add-fund-2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:5000/tact/funds",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "abc",
+							"value": "abc",
+							"type": "text"
+						},
+						{
+							"key": "xyz",
+							"value": "xyz",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:5000/tact/funds",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"tact",
+						"funds"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:5000/tact/funds/abbr22/11000022",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:5000/tact/funds/abbr22/11000022",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"tact",
+						"funds",
+						"abbr22",
+						"11000022"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:5000/tact/add-fund-data/abbr40/11000040",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:5000/tact/add-fund-data/abbr40/11000040",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"tact",
+						"add-fund-data",
+						"abbr40",
+						"11000040"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
