@@ -7,7 +7,7 @@ let _db ;
 //After connecting to Mongo Start Node server
 mongoConnection = (cb) => {
 
-    mongoClient.connect(config.get('mongo.url'))
+    mongoClient.connect(config.get('mongo-tact.url'))
     .then((res) => {
         _db = res.db();
         cb(); 

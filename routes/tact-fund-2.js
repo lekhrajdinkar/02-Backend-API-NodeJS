@@ -23,12 +23,7 @@ router.post("/add-fund/",fundController.addFund ); // 2.1 add New fund in DB
 //4Delete
 
 
-//----------- JOI Validator ----------
 
-const schema = { 
-    abbr: Joi.string().min(5).required(),
-    num : Joi.string().min(8).max(8).required()
-}
 
 module.exports = router ;
 

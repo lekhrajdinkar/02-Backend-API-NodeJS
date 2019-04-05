@@ -23,6 +23,14 @@ addFund = (req,resp,next)=> {
     resp.send('success...');
 }
 
+
+//----------- JOI Validator ----------
+
+const schema = { 
+    abbr: Joi.string().min(5).required(),
+    num : Joi.string().min(8).max(8).required()
+}
+
 module.exports = {
     addFund : addFund,
     getFund : getFund
