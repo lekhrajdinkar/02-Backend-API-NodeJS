@@ -1,0 +1,6 @@
+{
+    "env" : {
+        "tact_password_env_var":"dummypasswrdfromnodemon",
+        "NODE_ENV" : "dev2"
+    }
+}

@@ -1,4 +1,6 @@
 const express = require('express');
+const fs = require('fs');
+const path = require('path');
 const http = require('http');
 const morgan = require('morgan');
 const config = require('config');
@@ -24,8 +26,10 @@ console.log( 'Developer name - ' , config.get('developer.name'), '| app email pa
 app.set('view engine','pug'); app.set('view', './views'); // Configuring  template engine for express.
 
 // Adding 3rd party mwe - morgan for development only.
-if(app.get('env') !== 'development'){ //same as process.env.NODE_ENV
-    app.use(morgan('tiny'));
+const accesslogStream = fs.createWriteStream( path.join(__dirname,'access.log'), {flags: 'a'} );
+
+if(app.get('env') !== 'production'){ //same as process.env.NODE_ENV
+    app.use(morgan('combined',{stream :accesslogStream}));
     console.log('morgan enabled for ', app.get('env'));
 }
 
