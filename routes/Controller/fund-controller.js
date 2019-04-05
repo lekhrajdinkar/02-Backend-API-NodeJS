@@ -35,6 +35,14 @@ addFund = (req,resp,next)=> {
     resp.send('success...');
 }
 
+deleteById = (req,resp,next)=> {
+    fundModel.deleteById(req,resp);
+}
+
+updateById = (req,resp,next)=> {
+    fundModel.updateById(req,resp);
+}
+
 
 //----------- JOI Validator ----------
 
@@ -50,4 +58,6 @@ module.exports = {
     ,getLatest : getLatest
     ,getByUser : getByUser
     ,getById :getById
+    ,deleteById : deleteById
+    ,updateById : updateById
 }

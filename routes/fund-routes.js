@@ -21,9 +21,10 @@ router.post("/get-fund-by-Id/", fundController.getById);
 router.post("/add-fund/",fundController.addFund ); // 2.1 add New fund in DB
 
 //3PUT
-
+router.put("/update-fund-byId/", fundController.updateById); 
 
 //4Delete
+router.delete("/delete-fund-byId/", fundController.deleteById); 
 
 
 

@@ -64,6 +64,29 @@ addFund = (fund) => {
     .catch((err) => { });
 }
 
+
+//DELETE
+deleteById = (req,resp) => {
+    const db = tactMongoDB();
+    const filter = { _id : new mongodb.ObjectID(req.body._id)} ;
+    db.collection('funds').deleteOne(filter)
+    .then((result) => { 
+       console.log('Deleted ...', req.body._id); resp.send(result);
+    })
+    .catch((err) => { });
+}
+
+//PUT
+updateById = (req,resp) => {
+    const db = tactMongoDB();
+    const filter = { _id : new mongodb.ObjectID(req.body._id)} ;
+    db.collection('funds').updateOne(filter, {$set: {"abbr" : req.body.abbr, "num" : req.body.num } })
+    .then((result) => { 
+       console.log('updated ...', req.body._id); resp.send(result);
+    })
+    .catch((err) => { });
+}
+
 //----------------
 module.exports = {
     getAll: getAllFunds, 
@@ -71,5 +94,7 @@ module.exports = {
     getByUser : getByUser,
     add: addFund,
     Fund: Fund,
-    getById : getById
+    getById : getById,
+    deleteById : deleteById,
+    updateById : updateById
 }
