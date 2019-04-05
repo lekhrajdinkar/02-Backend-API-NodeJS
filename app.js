@@ -48,7 +48,7 @@ app.use('/tact2', tactRouteFund2);
 //If connected to DB then only start listen to backend server
 tactMongoDB.connect( () => {
 //adding dyanmic port
-const port = process.env.PORT  || 4000 ;
+const port = process.env.PORT  || 5000 ;
 app.listen(port);
 console.log('TACT server running  on port - ', port);
 //const server = http.createServer(app);
