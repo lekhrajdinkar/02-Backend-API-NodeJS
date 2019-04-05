@@ -7,7 +7,7 @@ const tactMongoDB = require('./util/mongoDB')
 //local import
 const tactRouteAuth = require('./routes/tact-auth');
 const tactRouteFund = require('./routes/tact-fund');
-const tactRouteFund2 = require('./routes/tact-fund-2');
+const fundRoutes= require('./routes/fund-routes');
 
 //express
 const app = express();
@@ -42,7 +42,7 @@ app.use('/tact', tactRouteAuth, tactRouteFund);
 // app.use('/tact', tactRouteAuth, tactRouteFund); app.use('/tact', tactRouteFund);
 
 //TACT app with mongo
-app.use('/tact2', tactRouteFund2);
+app.use('/tact2', fundRoutes);
 
 
 //If connected to DB then only start listen to backend server

@@ -12,7 +12,7 @@ const fundController = require('./Controller/fund-controller');
 router.use(express.json());
 
 //1 GET 
-router.get("/get-funds", fundController.getFund); //1.1 get all Funds frm DB
+router.get("/get-funds/", fundController.getFund); //1.1 get all Funds frm DB
 
 //2 POST 
 router.post("/add-fund/",fundController.addFund ); // 2.1 add New fund in DB

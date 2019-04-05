@@ -2,7 +2,7 @@ const Joi = require('joi');
 const fundModel = require('./../../model/fund-model')
 
 getFund = (req,resp,next)=> {
-    fundModel.getAll();
+    fundModel.getAll(resp);
 }
 
 addFund = (req,resp,next)=> {
