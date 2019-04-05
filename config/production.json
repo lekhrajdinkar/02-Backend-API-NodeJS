@@ -1,3 +1,6 @@
 {
-    "app-name":"TACT-production"
+    "app-name":"TACT-production",
+    "mongo":{
+        "url":"mongodb+srv://lekhrajdinkar:unclechips@cluster0-jer1o.gcp.mongodb.net/tact-prod?retryWrites=true"
+    }
 }

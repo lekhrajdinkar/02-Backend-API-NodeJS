@@ -37,13 +37,15 @@ app.use(
 (req,resp,next)=> {console.log('mwe-fn-2.2 > '); next();}
 );
 
-//mwe3 - tact
+//mwe3 - tact - app.use('/tact', tactRouteAuth, tactRouteFund);
 app.use('/tact', tactRouteAuth, tactRouteFund);
+// app.use('/tact', tactRouteAuth, tactRouteFund); app.use('/tact', tactRouteFund);
 
+//TACT app with mongo
 app.use('/tact2', tactRouteFund2);
-//app.use('/tact', tactRouteFund);
 
-//If connected to DB then start listen to backend server
+
+//If connected to DB then only start listen to backend server
 tactMongoDB.connect( () => {
 //adding dyanmic port
 const port = process.env.PORT  || 4000 ;
