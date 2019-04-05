@@ -12,8 +12,8 @@ class Fund {
 //------------
 
 //GET
- getAllFunds = () => {
-
+getAllFunds = () => {
+//db.find()
 }
 
 //ADD FUND
