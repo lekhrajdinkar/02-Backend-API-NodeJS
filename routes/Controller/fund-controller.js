@@ -7,6 +7,9 @@ getAll = (req,resp,next)=> {
 getLatest = (req,resp,next)=> {
     fundModel.getLatest(resp);
 }
+getByUser = (req,resp,next)=> {
+    fundModel.getByUser(req,resp);
+}
 
 addFund = (req,resp,next)=> {
     
@@ -20,7 +23,7 @@ addFund = (req,resp,next)=> {
     }
 
     //Store  in Mongo
-    fundModel.add(new fundModel.Fund (req.body.abbr, req.body.num) );
+    fundModel.add(new fundModel.Fund (req.body.abbr, req.body.num, req.body.created_by) );
 
     //send response
     resp.send('success...');
@@ -38,4 +41,5 @@ module.exports = {
     addFund : addFund
     ,getAll : getAll
     ,getLatest : getLatest
+    ,getByUser : getByUser
 }

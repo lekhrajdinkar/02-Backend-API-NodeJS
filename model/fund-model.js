@@ -4,11 +4,11 @@ const tactMongoDB = require('./../util/mongoDB').db;
 
 //Class - Fund
 class Fund {
-    constructor(abbr, num) {
+    constructor(abbr, num, created_by) {
         this.abbr = abbr;
         this.num = num;
         this.create_tmstmp = Date.now();
-        this.created_by = 'INYLBD';
+        this.created_by = created_by;
     }
 }
 //------------
@@ -33,6 +33,16 @@ getRecentFund = (resp) => {
     .catch((err) => { });
 }
 
+getByUser = (req,resp) => {
+    const db = tactMongoDB();
+    //onsole.log('req.params.user', req.params.user);
+    db.collection('funds').find({created_by : req.params.user}).toArray()
+    .then((funds) => { 
+       resp.send(funds);
+    })
+    .catch((err) => { });
+}
+
 //ADD FUND
 addFund = (fund) => {
     console.log(fund);
@@ -46,6 +56,7 @@ addFund = (fund) => {
 module.exports = {
     getAll: getAllFunds, 
     getLatest: getRecentFund,
+    getByUser : getByUser,
     add: addFund,
     Fund: Fund
 }
