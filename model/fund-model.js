@@ -1,5 +1,6 @@
 //get current db instance.
 const tactMongoDB = require('./../util/mongoDB').db;
+const mongodb = require('mongodb');
 
 
 //Class - Fund
@@ -36,7 +37,18 @@ getRecentFund = (resp) => {
 getByUser = (req,resp) => {
     const db = tactMongoDB();
     //onsole.log('req.params.user', req.params.user);
-    db.collection('funds').find({created_by : req.params.user}).toArray()
+    const filter = {created_by : req.params.user} ;
+    db.collection('funds').find(filter).toArray()
+    .then((funds) => { 
+       resp.send(funds);
+    })
+    .catch((err) => { });
+}
+
+getById = (req,resp) => {
+    const db = tactMongoDB();
+    const filter = { _id : new mongodb.ObjectID(req.body._id)} ;
+    db.collection('funds').find(filter).toArray()
     .then((funds) => { 
        resp.send(funds);
     })
@@ -58,5 +70,6 @@ module.exports = {
     getLatest: getRecentFund,
     getByUser : getByUser,
     add: addFund,
-    Fund: Fund
+    Fund: Fund,
+    getById : getById
 }

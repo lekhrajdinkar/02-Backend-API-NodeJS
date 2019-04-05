@@ -12,9 +12,10 @@ const fundController = require('./Controller/fund-controller');
 router.use(express.json());
 
 //1 GET 
-router.get("/get-all-funds/", fundController.getAll); //1.1 get all Funds frm DB
-router.get("/get-latest-fund/", fundController.getLatest); //1.1 get all Funds frm DB
-router.get("/get-fund/:user/", fundController.getByUser); //1.1 get all Funds frm DB
+router.get("/get-all-funds/", fundController.getAll); 
+router.get("/get-latest-fund/", fundController.getLatest); 
+router.get("/get-fund/:user/", fundController.getByUser); 
+router.post("/get-fund-by-Id/", fundController.getById); 
 
 //2 POST 
 router.post("/add-fund/",fundController.addFund ); // 2.1 add New fund in DB

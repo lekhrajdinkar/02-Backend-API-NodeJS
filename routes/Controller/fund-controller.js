@@ -4,11 +4,17 @@ const fundModel = require('./../../model/fund-model')
 getAll = (req,resp,next)=> {
     fundModel.getAll(resp);
 }
+
 getLatest = (req,resp,next)=> {
     fundModel.getLatest(resp);
 }
+
 getByUser = (req,resp,next)=> {
     fundModel.getByUser(req,resp);
+}
+
+getById  = (req,resp,next)=> {
+    fundModel.getById(req,resp);
 }
 
 addFund = (req,resp,next)=> {
@@ -42,4 +48,5 @@ module.exports = {
     ,getAll : getAll
     ,getLatest : getLatest
     ,getByUser : getByUser
+    ,getById :getById
 }
