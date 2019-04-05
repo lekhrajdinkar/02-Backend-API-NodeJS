@@ -8,9 +8,13 @@ const tactMongoDB = require('./util/mongoDB')
 const tactRouteAuth = require('./routes/tact-auth');
 const tactRouteFund = require('./routes/tact-fund');
 const fundRoutes= require('./routes/fund-routes');
+const swaggerDoc = require('./swagger-doc');
 
 //express
 const app = express();
+
+//swagger-express-doc
+swaggerDoc(app);
 
 // config
 console.log('Application name - ' , config.get('app-name'));
@@ -43,7 +47,6 @@ app.use('/tact', tactRouteAuth, tactRouteFund);
 
 //TACT app with mongo
 app.use('/tact2', fundRoutes);
-
 
 //If connected to DB then only start listen to backend server
 tactMongoDB.connect( () => {
