@@ -1,8 +1,11 @@
 const Joi = require('joi');
 const fundModel = require('./../../model/fund-model')
 
-getFund = (req,resp,next)=> {
+getAll = (req,resp,next)=> {
     fundModel.getAll(resp);
+}
+getLatest = (req,resp,next)=> {
+    fundModel.getLatest(resp);
 }
 
 addFund = (req,resp,next)=> {
@@ -32,6 +35,7 @@ const schema = {
 }
 
 module.exports = {
-    addFund : addFund,
-    getFund : getFund
+    addFund : addFund
+    ,getAll : getAll
+    ,getLatest : getLatest
 }
