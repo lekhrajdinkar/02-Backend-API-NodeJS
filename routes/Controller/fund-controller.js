@@ -40,7 +40,8 @@ addFund = (req,resp,next)=> {
 
 const schema = { 
     abbr: Joi.string().min(5).required(),
-    num : Joi.string().min(8).max(8).required()
+    num : Joi.string().min(8).max(8).required(),
+    created_by : Joi.string().min(3).required()
 }
 
 module.exports = {
