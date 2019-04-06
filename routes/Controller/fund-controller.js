@@ -23,9 +23,12 @@ addFund = (req,resp,next)=> {
 
     // JOI-validate http request body
     const result = Joi.validate(req.body, schema);
-    console.log('JOI result  : ', result);
+    //console.log('JOI result  : ', result);
     if(result.error) {
-        resp.status(400).send(result.error.details[0].message); return;
+        let err = new Error();
+        err.status = 422 ;
+        err.msg = result.error.details[0].message;
+        return next(err);
     }
 
     //Store  in Mongo
@@ -49,7 +52,7 @@ updateById = (req,resp,next)=> {
 const schema = { 
     abbr: Joi.string().min(5).required(),
     num : Joi.string().min(8).max(8).required(),
-    created_by : Joi.string().min(3).required()
+    created_by : Joi.string().min(8).required()
 }
 
 module.exports = {

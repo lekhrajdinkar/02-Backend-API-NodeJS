@@ -28,33 +28,39 @@ app.set('view engine','pug'); app.set('view', './views'); // Configuring  templa
 // Adding 3rd party mwe - morgan for development only.
 const accesslogStream = fs.createWriteStream( path.join(__dirname,'access.log'), {flags: 'a'} );
 
-if(app.get('env') !== 'production'){ //same as process.env.NODE_ENV
+if(app.get('env') == 'dev1'){ //same as process.env.NODE_ENV
     app.use(morgan('combined',{stream :accesslogStream}));
     console.log('morgan enabled for ', app.get('env'));
 }
-
-//add express middleware.
 
 //mwe1 - for all url
 app.use((req,resp,next)=> {console.log('mwe-fn-1 > ', req.body, req.url, req.method); next();});
 
 //mwe2 - CORS Cross Origin Resource Sharing
 app.use((req,resp,next)=> {
+    console.log('Setting CORS header...');
     resp.setHeader('Access-Control-Allow-Origin', '*');
     resp.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,PATCH,DELETE,OPTIONS');
     resp.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     next();
 });
 
-//mwe3 - tact - app.use('/tact', tactRouteAuth, tactRouteFund);
+//mwe3 
 app.use('/tact', tactRouteAuth, tactRouteFund);
-// app.use('/tact', tactRouteAuth, tactRouteFund); app.use('/tact', tactRouteFund);
+// app.use('/tact', tactRouteAuth, tactRouteFund); 
+//app.use('/tact', tactRouteFund);
 
 //TACT app with mongo
 app.use('/tact2', fundRoutes);
 
-app.use('/', (req,resp,next)=> {
+app.use('/status', (req,resp,next)=> {
     resp.send('<html><h1>status : TACT Server is running </h1></html>');
+});
+
+//Central Error Handling - Special MWE by express.
+app.use((error, req, resp, next)=> {
+    console.log('GLOBAL ERROR');
+    resp.status(error.status).send(error.msg);
 });
 
 //If connected to DB then only start listen to backend server
