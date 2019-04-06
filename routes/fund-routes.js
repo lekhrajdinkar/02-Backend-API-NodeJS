@@ -9,7 +9,6 @@ const fundController = require('./Controller/fund-controller');
 //=================================================
 //  This router is get/put funds with MongoDatabase - CRUD
 //=================================================
-router.use(express.json());
 
 //1 GET 
 router.get("/get-all-funds/", fundController.getAll); 
@@ -25,8 +24,6 @@ router.put("/update-fund-byId/", fundController.updateById);
 
 //4Delete
 router.delete("/delete-fund-byId/", fundController.deleteById); 
-
-
 
 
 module.exports = router ;
