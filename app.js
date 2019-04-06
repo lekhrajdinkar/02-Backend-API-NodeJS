@@ -30,7 +30,8 @@ console.log('Application name - ' , config.get('app-name'));
 //console.log( 'Developer name - ' , config.get('developer.name'), '| app email password reading from env var : ', config.get('email.password'));
 //app.set('env', 'dev1');
 
-app.set('view engine','pug'); app.set('view', './views'); // Configuring  template engine for express.
+//For REST not needed - template Engine for express + Expression session
+//app.set('view engine','pug'); app.set('view', './views'); // Configuring  template engine for express.
 
 // Adding 3rd party mwe - morgan for development only.
 const accesslogStream = fs.createWriteStream( path.join(__dirname,'access.log'), {flags: 'a'} );
@@ -57,14 +58,11 @@ app.use('/tact',tactRouteFund);
 app.use('/tact2', authRoutes);
 app.use('/tact2', fundRoutes);
 
-app.use('/status', (req,resp,next)=> {
-    resp.send('<html><h1>status : TACT Server is running </h1></html>');
-});
-
 //Central Error Handling - Special MWE by express.
 app.use((error, req, resp, next)=> {
     console.log('GLOBAL ERROR Handling...');
     resp.status(error.status).send(error.msg);
+    //resp.send(error);
 });
 
 //If connected to DB then only start listen to backend server

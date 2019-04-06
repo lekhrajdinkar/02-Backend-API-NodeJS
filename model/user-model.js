@@ -1,6 +1,8 @@
 const tactMongoDB = require('./../util/mongoDB').db;
 const mongodb = require('mongodb');
 const config = require('config');
+const {check, body} = require('express-validator');
+//const {body} = require('express-validator');
 
 //=====================
 class User {
@@ -9,8 +11,7 @@ class User {
         this.initial = initial;
         this.role = role;
         this.loc = loc;
-        this.last_login_dt = last_login_dt;
-        this.create_tmstmp = Date.now();
+        this.last_login_dt = Date.now();
     }
 }
 
@@ -18,6 +19,7 @@ class User {
 addUser = (req, resp) => {
     let u  = new User(req.body.name, req.body.initial, req.body.role, req.body.loc, req.body.last_login_dt );
 
+    //1. express validation
     tactMongoDB().collection('user').insertOne(u)
     .then(() => { 
         console.log('user added : ', u.name); 
@@ -48,6 +50,10 @@ logout = (req, resp) => {
     .catch((err) => { });
 }
 
+//Expresse validatot
+validate = (req,next) => {
+req
+}
 //==========================
 module.exports = {
     addUser : addUser,
