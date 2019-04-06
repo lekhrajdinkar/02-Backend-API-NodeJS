@@ -19,7 +19,7 @@ router.use('/status2',(req,resp,next)=> {
 
 //1 GET with express body validator --> it will set valiation error in req.error property
 router.post("/add-user",
-[check('name').trim().isLength({min : 5}).isAlphanumeric().withMessage("minimun lenght is 5"),
+[check('name').trim().isLength({min : 5}).isAlphanumeric().withMessage("minimun enght is 5 and should be alphanumeric"),
 check('initial').trim().isLength({min : 3}).custom((value, {req}) => {
     if(value === 'INYINY')  throw new Error("initial cant be INYINY"); else return true;ß
 })],
