@@ -20,7 +20,8 @@ getAllFunds = (resp) => {
     db.collection('funds').find({}).toArray()
     .then((funds) => { 
         //console.log('ALL FUNDS - CRUD - READ : ' ,funds) ; 
-        resp.send(funds);
+        //resp.send(funds);
+        resp.status(200).json(funds); //json() will automatically add content-type as json.
     })
     .catch((err) => { });
 }

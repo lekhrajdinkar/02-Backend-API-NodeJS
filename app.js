@@ -38,12 +38,13 @@ if(app.get('env') !== 'production'){ //same as process.env.NODE_ENV
 //mwe1 - for all url
 app.use((req,resp,next)=> {console.log('mwe-fn-1 > ', req.body, req.url, req.method); next();});
 
-//mwe2 - dummy
-app.use(
-'/mwe2',
-(req,resp,next)=> {console.log('mwe-fn-2.1 > '); next();}, 
-(req,resp,next)=> {console.log('mwe-fn-2.2 > '); next();}
-);
+//mwe2 - CORS Cross Origin Resource Sharing
+app.use((req,resp,next)=> {
+    resp.setHeader('Access-Control-Allow-Origin', '*');
+    resp.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,PATCH,DELETE,OPTIONS');
+    resp.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    next();
+});
 
 //mwe3 - tact - app.use('/tact', tactRouteAuth, tactRouteFund);
 app.use('/tact', tactRouteAuth, tactRouteFund);

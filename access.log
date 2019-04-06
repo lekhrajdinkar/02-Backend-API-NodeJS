@@ -1,0 +1,2 @@
+::1 - - [06/Apr/2019:05:42:53 +0000] "GET /tact2/get-all-funds HTTP/1.1" 200 529 "-" "PostmanRuntime/7.4.0"
+::1 - - [06/Apr/2019:05:44:35 +0000] "GET /tact2/get-all-funds HTTP/1.1" 200 529 "-" "PostmanRuntime/7.4.0"
