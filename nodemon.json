@@ -1,6 +1,7 @@
 {
     "env" : {
         "tact_password_env_var":"dummypasswrdfromnodemon",
-        "NODE_ENV" : "dev2"
+        "NODE_ENV" : "dev2",
+        "sendgrid_api_key":"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" 
     }
 }

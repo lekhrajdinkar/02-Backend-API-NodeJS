@@ -1,5 +1,6 @@
 {
     "email":{
-        "password":"tact_password_env_var"
+        "password":"tact_password_env_var",
+        "sendgrid-api-key":"sendgrid_api_key"
     }
 }

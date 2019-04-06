@@ -1,7 +1,20 @@
 //get current db instance.
 const tactMongoDB = require('./../util/mongoDB').db;
 const mongodb = require('mongodb');
+const config = require('config');
 
+//EMAIL
+const sgMail = require('@sendgrid/mail');
+sgMail.setApiKey(config.get('email.sendgrid-api-key'));
+console.log(config.get('email.sendgrid-api-key'));
+const msg = {
+    to: 'lekhrajdinkar@gmail.com',
+    from: 'lekhrajdinkarus@gmail.com',
+    subject: 'TACT - Fund SetUp',
+    text: 'and easy to do anywhere, even with Node.js',
+    html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+  };
+  //sgMail.send(msg);
 
 //Class - Fund
 class Fund {

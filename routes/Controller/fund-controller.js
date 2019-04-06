@@ -1,5 +1,18 @@
 const Joi = require('joi');
+const config = require('config');
+//const sgt = require('nodemailer-sendgrid-transport');
+//const nm = require('nodemailer');
 const fundModel = require('./../../model/fund-model')
+
+
+//---Email- nodemailer
+// const transporter = nm.createTransport(sendgridTransport({
+//     auth:{
+//         api_key:config.get('sendgrid-api-key')
+//     }
+// }));
+
+
 
 getAll = (req,resp,next)=> {
     fundModel.getAll(resp);

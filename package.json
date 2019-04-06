@@ -4,6 +4,7 @@
   "description": "TACT backend",
   "main": "001temp/app.js",
   "dependencies": {
+    "@sendgrid/mail": "^6.3.1",
     "body-parser": "^1.18.3",
     "config": "^3.0.1",
     "express": "^4.16.4",
@@ -17,7 +18,7 @@
     "nodemon": "^1.18.10"
   },
   "engines": {
-    "node" : "10.15.2"
+    "node": "10.15.2"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
