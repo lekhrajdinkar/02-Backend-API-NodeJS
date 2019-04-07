@@ -6,18 +6,22 @@ const authController = require('./Controller/auth-controller');
 
 //================ TEST ============
 router.use('/welcome',(req,resp,next)=> {
-    if(req.session.isloggedIN == true)
-    resp.send('<html><h1>welcome to TACT</h1></html>');
+    if(req.session.currentUser)
+        resp.send('<html><h1>welcome to TACT</h1></html>');
     else
-    resp.send('<html><h1>login first</h1></html>');
+        resp.send('<html><h1>login first</h1></html>');
 });
 
 router.use('/status2',(req,resp,next)=> {
     resp.send({status : 'running'});
 });
 
-router.get('/login',(req,resp,next)=> {
-    req.session.isloggedIN=true;
+router.post('/login',(req,resp,next)=> {
+    //req.session.isloggedIN=true;
+    
+    //authenticate and on success store current user in session
+    req.session.currentUser = { initial: req.body.initial, name : req.body.name};
+
     resp.redirect('./welcome')
 });
 
