@@ -57,7 +57,7 @@ router.post('/signup',(req,resp,next)=> {
     tactMongoDB().collection('login').find({ initial: req.body.initial}).toArray()
     .then((user) => {
        if(user[0]){
-           console.log('user already found : ', user[0]);
+           console.log('user already exist : ', user[0]);
            return Promise.reject("User already exist")
        }
        else
@@ -72,7 +72,7 @@ router.post('/signup',(req,resp,next)=> {
     })
     .catch((err) => { 
         error = new Error();
-        error.message = "Express Validator : FAILED, Entered data is incorrect";
+        error.message = err;
         error.data = { initial: req.body.initial, signup_status : "FAILED"}
         next(error);
     });
