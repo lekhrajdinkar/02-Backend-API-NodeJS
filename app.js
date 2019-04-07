@@ -78,8 +78,10 @@ app.use('/tact2', fundRoutes);
 //MWE - Central Error Handling - Special MWE by express.
 app.use((error, req, resp, next)=> {
     console.log('GLOBAL ERROR Handling...',error);
-    resp.status(error.status).send(error.msg);
-    //resp.send(error);
+    const status = error.status || 500 ;
+    const message = error.message;
+    const data = error.data
+    resp.status(status).json({message: message, data: data});
 });
 
 //======= INIT : NODE SERVER + MONGODB =============START

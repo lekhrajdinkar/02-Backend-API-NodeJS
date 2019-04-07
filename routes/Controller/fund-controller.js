@@ -40,7 +40,8 @@ addFund = (req,resp,next)=> {
     if(result.error) {
         let err = new Error();
         err.status = 422 ;
-        err.msg = result.error.details[0].message;
+        err.message = "fund data is incorrect"
+        err.data = result.error.details;
         return next(err);
     }
 
