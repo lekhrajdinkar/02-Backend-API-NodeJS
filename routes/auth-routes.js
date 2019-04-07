@@ -8,6 +8,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('config');
 const jwtMwe = require('./../util/mwe/jwt-mwe')
+const asyncTemplate = require('./../util/mwe/async-mwe');
 
 //================ TEST ============ START
 router.use('/welcome',(req,resp,next)=> {
@@ -175,6 +176,22 @@ router.post('/signup2',async (req,resp,next)=> {
         next(error);
     }
 });
+
+// same as above but try-catch is missing
+router.post('/signup3',asyncTemplate(async (req,resp,next)=> {
+
+    let user = await tactMongoDB().collection('login').find({ initial: req.body.initial}).toArray()
+    //if(user[0]) return Promise.reject("User already exist");
+    if(user[0]) throw new Error("User already exist");
+  
+    let hashedpswd = await  bcrypt.hash(req.body.password, 12);
+    
+    await tactMongoDB().collection('login').insertOne({ initial: req.body.initial, password : hashedpswd});
+
+    console.log('signup successfully... : ', req.body.initial); 
+    resp.status(201).json({ initial: req.body.initial, signup_status : "SUCCESS" });
+    
+}));
 //================ TEST ============ END
 
 
