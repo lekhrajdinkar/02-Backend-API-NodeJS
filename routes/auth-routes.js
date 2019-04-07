@@ -32,7 +32,7 @@ router.get('/logout',(req,resp,next)=> {
     resp.status(200).json({ initial: req.body.initial, logout_status : "SUCCESSFUL" })
 });
 
-router.post('/login',(req,resp,next)=> {
+router.post('/login',async (req,resp,next)=> {
     let user_temp;
     const user_req = req.body.initial || 'AAXL';
     const pswd_req = req.body.password || '123456';
@@ -44,6 +44,7 @@ router.post('/login',(req,resp,next)=> {
             return bcrypt.compare(pswd_req, user[0].password) //compare
     })
     .then((match) => {
+        //abcd(); //unhandlePromiseRejectionWarning
         if(match){
             req.session.currentUser = { initial: user_req};
 
@@ -103,6 +104,76 @@ router.post('/signup',(req,resp,next)=> {
         next(error);
     });
 
+});
+
+router.post('/login', (req,resp,next)=> {
+    let user_temp;
+    const user_req = req.body.initial || 'AAXL';
+    const pswd_req = req.body.password || '123456';
+
+    tactMongoDB().collection('login').find({ initial: user_req}).toArray()
+    .then((user) => {
+        user_temp = user[0];
+        if(user[0]) 
+            return bcrypt.compare(pswd_req, user[0].password) //compare
+    })
+    .then((match) => {
+        //abcd(); //unhandlePromiseRejectionWarning
+        if(match){
+            req.session.currentUser = { initial: user_req};
+
+            //=== JWT ===
+            //1. Generate JWT
+            const jwtToken = jwt.sign({
+                initial: user_req,
+                _id : user_temp._id,
+                dt: Date.now()
+            }, 
+            config.get('jwt.secret'),
+            {expiresIn:'1h'}
+            );
+            //req.session.jwt  = jwtToken;
+
+            //2. send JWT to client inresponse.
+            resp.status(200).json({jwt: jwtToken, initial: user_req, login_status : "SUCCESSFUL"});
+
+            //3. NEW MWE to validate JWT token before processing request. check app.js.
+
+        }else{
+            error = new Error();
+            error.status = 401;
+            error.message = "incorrect login credential";
+            error.data = { initial: user_req, login_status : "FAILED"}
+            next(error);
+        }
+    })
+    .catch((err) => { 
+        console.log(err);
+        resp.json({ initial: user_req, login_status : "FAILED" }); 
+    });
+});
+
+//==== SignUp2 - asysn await format
+router.post('/signup2',async (req,resp,next)=> {
+    try
+    {
+    let user = await tactMongoDB().collection('login').find({ initial: req.body.initial}).toArray()
+    //if(user[0]) return Promise.reject("User already exist");
+    if(user[0]) throw new Error("User already exist");
+  
+    let hashedpswd = await  bcrypt.hash(req.body.password, 12);
+    
+    await tactMongoDB().collection('login').insertOne({ initial: req.body.initial, password : hashedpswd});
+
+    console.log('signup successfully... : ', req.body.initial); 
+    resp.status(201).json({ initial: req.body.initial, signup_status : "SUCCESS" });
+    }
+    catch(err) { 
+        error = new Error();
+        error.message = err;
+        error.data = { initial: req.body.initial, signup_status : "FAILED"}
+        next(error);
+    }
 });
 //================ TEST ============ END
 
