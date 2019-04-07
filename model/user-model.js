@@ -6,27 +6,30 @@ const {check, body} = require('express-validator');
 
 //=====================
 class User {
-    constructor(name,initial,role,loc,last_login_dt){
+    constructor(name,initial,role,loc){
         this.name = name;
         this.initial = initial;
         this.role = role;
         this.loc = loc;
-        this.last_login_dt = Date.now();
+        this.create_dt = Date.now();
     }
 }
 
 //===================
 addUser = (req, resp) => {
-    let u  = new User(req.body.name, req.body.initial, req.body.role, req.body.loc, req.body.last_login_dt );
+    let u  = new User(req.body.name, req.body.initial, req.body.role, req.body.loc);
 
-    //1. express validation
     tactMongoDB().collection('user').insertOne(u)
-    .then(() => { 
-        console.log('user added : ', u.name); 
-        //resp.send(JSON.stringify(u));
-        resp.json(u);
+    .then((result) => { 
+        //console.log('user added : ', user.name, user._id); 
+        resp.status(200).json({status: "CREATED", data : u });
     })
-    .catch((err) => { throw new Error(err) });
+    .catch((err) => {  
+        error = new Error();
+        error.message = "Error while insertinf user in databse";
+        error.data = err;
+        next(error);
+    });
 }
 
 deleteUser = (req, resp) => {
@@ -50,10 +53,6 @@ logout = (req, resp) => {
     .catch((err) => { });
 }
 
-//Expresse validatot
-validate = (req,next) => {
-req
-}
 //==========================
 module.exports = {
     addUser : addUser,
