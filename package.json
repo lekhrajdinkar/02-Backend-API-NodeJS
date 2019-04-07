@@ -5,6 +5,7 @@
   "main": "001temp/app.js",
   "dependencies": {
     "@sendgrid/mail": "^6.3.1",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "config": "^3.0.1",
     "connect-mongodb-session": "^2.1.1",
