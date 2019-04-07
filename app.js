@@ -1,7 +1,10 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
-const http = require('http');
+
+const session = require('express-session');
+const mongoDBStore = require('connect-mongodb-session')(session);
+
 const morgan = require('morgan');
 const config = require('config');
 const tactMongoDB = require('./util/mongoDB')
@@ -12,35 +15,49 @@ const tactRouteFund = require('./routes/tact-fund');
 const fundRoutes= require('./routes/fund-routes');
 const swaggerDoc = require('./swagger-doc');
 
-//express
+//Express
 const app = express();
+//For REST not needed - template Engine for express + Expression session
+//app.set('view engine','pug'); app.set('view', './views'); // Configuring  template engine for express.
 
-//swagger-express-doc
+//MWE - express session with mongoDB store
+const mongoSessionstore = new mongoDBStore({ 
+    uri : config.get('mongo-tact.express-store-uri'), 
+    collection:"tact-sessions"
+})
+
+options =  {
+        secret : "my secret",
+        resave: false,
+        saveUninitialized: false,
+        store: mongoSessionstore
+}
+
+app.use(session(options));
+
+//swagger-express-doc - Not working
 swaggerDoc(app);
 
-//parser
+//body parser
 app.use(express.json());
 app.use(express.urlencoded());
 
-//mwe - to print url, req body,etc
+//MWE - to print url, req body,etc
 app.use((req,resp,next)=> {console.log('log REQ body MWE :  > ', req.body, req.url, req.method); next();});
 
-// config-test
+// config pkg - testing
 console.log('Application name - ' , config.get('app-name'));
 //console.log( 'Developer name - ' , config.get('developer.name'), '| app email password reading from env var : ', config.get('email.password'));
 //app.set('env', 'dev1');
 
-//For REST not needed - template Engine for express + Expression session
-//app.set('view engine','pug'); app.set('view', './views'); // Configuring  template engine for express.
-
-// Adding 3rd party mwe - morgan for development only.
+//MWE - morgan for development only.
 const accesslogStream = fs.createWriteStream( path.join(__dirname,'access.log'), {flags: 'a'} );
 if(app.get('env') == 'dev1'){ //same as process.env.NODE_ENV
     app.use(morgan('combined',{stream :accesslogStream}));
     console.log('morgan enabled for ', app.get('env'));
 }
 
-//mwe2 - Fixing - CORS Cross Origin Resource Sharing error.
+//MWE - Fixing - CORS Cross Origin Resource Sharing error.
 app.use((req,resp,next)=> {
     console.log('Setting CORS header...');
     resp.setHeader('Access-Control-Allow-Origin', '*');
@@ -49,21 +66,24 @@ app.use((req,resp,next)=> {
     next();
 });
 
-//mwe3 - TESTing purpose
+//MWE - TEST TACT
 app.use('/tact',tactRouteFund);
 // app.use('/tact', tactRouteAuth, tactRouteFund); 
 //app.use('/tact', tactRouteFund);
 
-//TACT app with mongo - all routes
+//MWE - REAL TACT app with mongo - all routes
 app.use('/tact2', authRoutes);
 app.use('/tact2', fundRoutes);
 
-//Central Error Handling - Special MWE by express.
+//MWE - Central Error Handling - Special MWE by express.
 app.use((error, req, resp, next)=> {
-    console.log('GLOBAL ERROR Handling...');
+    console.log('GLOBAL ERROR Handling...',error);
     resp.status(error.status).send(error.msg);
     //resp.send(error);
 });
+
+//======= INIT : NODE SERVER + MONGODB =============START
+
 
 //If connected to DB then only start listen to backend server
 tactMongoDB.connect( () => {
@@ -74,5 +94,8 @@ console.log('TACT server running  on port - ', port);
 //const server = http.createServer(app);
 //server.listen(4000);
 })
+
+//======= INIT : NODE SERVER + MONGODB =============END
+
 
 

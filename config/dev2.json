@@ -4,6 +4,7 @@
         "url":"mongodb+srv://lekhrajdinkar:unclechips@cluster0-jer1o.gcp.mongodb.net/tact-dev2?retryWrites=true"
     },
     "mongo-tact":{
-        "url":"mongodb+srv://lekhrajdinkar:unclechips@tact-cluster-hpzsu.mongodb.net/tact-dev2?retryWrites=true"
+        "url":"mongodb+srv://lekhrajdinkar:unclechips@tact-cluster-hpzsu.mongodb.net/tact-dev2?retryWrites=true",
+        "express-store-uri":"mongodb+srv://lekhrajdinkar:unclechips@tact-cluster-hpzsu.mongodb.net/tact-dev2"
     }
 }
