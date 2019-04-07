@@ -1,0 +1,1 @@
+{"data":{"initial":"AAXL3","signup_status":"FAILED"},"level":"error","message":"User already existUser already exist","stack":"Error: User already exist\n    at router.post.asyncTemplate (/Users/lekhrajdinkar/Documents/GitHub/NodeJS/routes/auth-routes.js:185:23)\n    at process._tickCallback (internal/process/next_tick.js:68:7)"}

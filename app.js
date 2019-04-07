@@ -9,6 +9,11 @@ const morgan = require('morgan');
 const config = require('config');
 const tactMongoDB = require('./util/mongoDB')
 
+//const logger = require('./util/winston-logger');
+const winston = require('winston');
+require('winston-mongodb');
+
+
 //local import
 const authRoutes = require('./routes/auth-routes');
 const tactRouteFund = require('./routes/tact-fund');
@@ -19,6 +24,9 @@ const swaggerDoc = require('./swagger-doc');
 const app = express();
 //For REST not needed - template Engine for express + Expression session
 //app.set('view engine','pug'); app.set('view', './views'); // Configuring  template engine for express.
+
+winston.add(new winston.transports.File({filename : config.get('log.app')}));
+winston.add(new winston.transports.MongoDB({db : config.get('mongo-tact.express-store-uri')}));
 
 //MWE - express session with mongoDB store
 const mongoSessionstore = new mongoDBStore({ 
@@ -78,9 +86,13 @@ app.use('/tact2', fundRoutes);
 //MWE - Central Error Handling - Special MWE by express.
 app.use((error, req, resp, next)=> {
     console.log('GLOBAL ERROR Handling...',error);
+   
     const status = error.status || 500 ;
     const message = error.message;
     const data = error.data
+
+    winston.log(config.get('log.level'),message, error); //log error
+
     resp.status(status).json({message: message, data: data});
 });
 

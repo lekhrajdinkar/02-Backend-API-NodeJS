@@ -17,6 +17,10 @@
     },
     "jwt":{
         "secret":"unclechips"
+    },
+    "log":{
+        "app":"./logs/tact-app.log",
+        "level":"error"
     }
 
 }

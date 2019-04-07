@@ -5,6 +5,7 @@
   "main": "001temp/app.js",
   "dependencies": {
     "@sendgrid/mail": "^6.3.1",
+    "app-root-path": "^2.2.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "config": "^3.0.1",
@@ -17,7 +18,9 @@
     "mongodb": "^3.2.2",
     "morgan": "^1.9.1",
     "swagger-jsdoc": "^3.2.8",
-    "swagger-ui-express": "^4.0.2"
+    "swagger-ui-express": "^4.0.2",
+    "winston": "^3.2.1",
+    "winston-mongodb": "^5.0.0"
   },
   "devDependencies": {
     "nodemon": "^1.18.10"
