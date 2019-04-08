@@ -20,7 +20,8 @@
     },
     "log":{
         "app":"./logs/tact-app.log",
-        "level":"error"
+        "level":"error",
+        "enable-mongo":"false"
     }
 
 }

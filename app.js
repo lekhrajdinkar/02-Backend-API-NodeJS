@@ -26,7 +26,12 @@ const app = express();
 //app.set('view engine','pug'); app.set('view', './views'); // Configuring  template engine for express.
 
 winston.add(new winston.transports.File({filename : config.get('log.app')}));
-winston.add(new winston.transports.MongoDB({db : config.get('mongo-tact.express-store-uri')}));
+
+if(config.get('log.enable-mongo') == 'true'){
+    console.log("Enabled mongoDB logs ...")
+    winston.add(new winston.transports.MongoDB({db : config.get('mongo-tact.express-store-uri')}));
+}
+    
 
 //MWE - express session with mongoDB store
 const mongoSessionstore = new mongoDBStore({ 

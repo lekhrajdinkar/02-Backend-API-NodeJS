@@ -6,5 +6,11 @@
     "mongo-tact":{
         "url":"mongodb+srv://lekhrajdinkar:unclechips@tact-cluster-hpzsu.mongodb.net/tact-dev2?retryWrites=true",
         "express-store-uri":"mongodb+srv://lekhrajdinkar:unclechips@tact-cluster-hpzsu.mongodb.net/tact-dev2"
+    },
+    "log":{
+        "app":"./logs/tact-app.log",
+        "level":"error",
+        "enable-mongo":"enable_mongo"
     }
+
 }
