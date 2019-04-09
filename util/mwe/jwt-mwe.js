@@ -10,7 +10,7 @@ module.exports = (req,resp,next) => {
     const authHeader = req.get('Authorization')
     if(!authHeader){
         error = new Error();
-        error.status = 500;
+        error.status = 401;
         error.message = 'Authentication failed : JWT verification failed';
         error.data = { cause: 'Authorization header not been set'};
         next(error);

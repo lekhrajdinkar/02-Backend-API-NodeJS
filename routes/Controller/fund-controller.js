@@ -49,7 +49,7 @@ addFund = (req,resp,next)=> {
     fundModel.add(new fundModel.Fund (req.body.abbr, req.body.num, req.body.created_by) );
 
     //send response
-    resp.send('success...');
+    resp.status(200).json({status:'Created'});
 }
 
 deleteById = (req,resp,next)=> {
