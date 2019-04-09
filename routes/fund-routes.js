@@ -1,6 +1,7 @@
 const express  = require('express');
 const router = express.Router();
 const Joi = require('joi');
+const jwtMwe = require('./../util/mwe/jwt-mwe')
 
 const fundController = require('./Controller/fund-controller');
 
@@ -17,7 +18,9 @@ router.get("/get-fund/:user/", fundController.getByUser);
 router.post("/get-fund-by-Id/", fundController.getById); 
 
 //2 POST 
-router.post("/add-fund/",fundController.addFund ); // 2.1 add New fund in DB
+router.post("/add-fund/"
+, jwtMwe // restricting this path with JWT
+, fundController.addFund ); // 2.1 add New fund in DB
 
 //3PUT
 router.put("/update-fund-byId/", fundController.updateById); 
