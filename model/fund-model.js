@@ -28,15 +28,25 @@ class Fund {
 //------------
 
 //GET
-getAllFunds = (resp) => {
+getAllFunds = (req, resp) => {
     const db = tactMongoDB();
-    db.collection('funds').find({}).toArray()
+    let pageNumber = req.query['pageNumber'] || 1 ;
+    let pageSize = req.query['pageSize'] || 5;
+    let sortBy = req.params['sortBy'] || 'num';
+
+    db.collection('funds').find({})
+//Pagination
+    .skip(+pageNumber - 1)
+    .limit(+pageSize)
+    .sort({[sortBy] : 1}) //Sorting
+
+    .toArray()
     .then((funds) => { 
-        //console.log('ALL FUNDS - CRUD - READ : ' ,funds) ; 
-        //resp.send(funds);
+    //QueryParam and pathParam   
+    //console.log('qp : ' , req.params, req.query)
         resp.status(200).json(funds); //json() will automatically add content-type as json.
     })
-    .catch((err) => { });
+    .catch((err) => { throw err ;});
 }
 
 getRecentFund = (resp) => {

@@ -15,7 +15,7 @@ const fundModel = require('./../../model/fund-model')
 
 
 getAll = (req,resp,next)=> {
-    fundModel.getAll(resp);
+    fundModel.getAll(req,resp);
 }
 
 getLatest = (req,resp,next)=> {
