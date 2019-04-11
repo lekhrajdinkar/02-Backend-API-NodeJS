@@ -31,5 +31,5 @@ module.exports = {
     addUser : addUser,
     login : login,
     deleteUser : deleteUser,
-    logout : logout
+    logout : logout,
 }

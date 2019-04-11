@@ -29,6 +29,12 @@ router.put("/update-fund-byId/", fundController.updateById);
 router.delete("/delete-fund-byId/", fundController.deleteById); 
 
 
+//=================================================
+// Underlying Funds
+//=================================================
+router.get("/get-uf-by-fof/:fof_id", fundController.getAllUnderlyingFunds); 
+router.post("/add-uf", fundController.addUF); 
+
 module.exports = router ;
 
 //=================

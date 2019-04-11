@@ -42,8 +42,7 @@ getAllFunds = (req, resp) => {
 
     .toArray()
     .then((funds) => { 
-    //QueryParam and pathParam   
-    //console.log('qp : ' , req.params, req.query)
+        console.log('funds : ' , funds);
         resp.status(200).json(funds); //json() will automatically add content-type as json.
     })
     .catch((err) => { throw err ;});

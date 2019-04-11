@@ -2,7 +2,8 @@ const Joi = require('joi');
 const config = require('config');
 //const sgt = require('nodemailer-sendgrid-transport');
 //const nm = require('nodemailer');
-const fundModel = require('./../../model/fund-model')
+const fundModel = require('./../../model/fund-model');
+const ufModel = require('./../../model/underlying-fund-model')
 
 
 //---Email- nodemailer
@@ -60,6 +61,17 @@ updateById = (req,resp,next)=> {
     fundModel.updateById(req,resp);
 }
 
+//UF
+getAllUnderlyingFunds = (req,resp,next)=> {
+    ufModel.getAllUnderlyingFunds(req,resp);
+}
+
+addUF = (req,resp,next)=> {
+    let uf = new ufModel.UnderlyingFund(req.body.abbr, req.body.num, req.body.created_by, req.body.fof_id, req.body.t1,req.body.t2);
+    ufModel.addUF(uf);
+    //send response
+    resp.status(200).json({status:'UF Created'});
+}
 
 //----------- JOI Validator ----------
 
@@ -77,4 +89,9 @@ module.exports = {
     ,getById :getById
     ,deleteById : deleteById
     ,updateById : updateById
+
+
+    //UF
+    ,getAllUnderlyingFunds : getAllUnderlyingFunds
+    ,addUF: addUF
 }
