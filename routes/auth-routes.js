@@ -212,6 +212,9 @@ router.post(
 })],
 authController.addUser); 
 
+//auth-status service
+router.get("/auth-status",jwtMwe, (req, resp)=>{ resp.json({status:true})});
+
 //router.get("/get-latest-fund/", fundController.getLatest); 
 //router.get("/get-fund/:user/", fundController.getByUser); 
 //router.post("/get-fund-by-Id/", fundController.getById); 
