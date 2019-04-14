@@ -27,9 +27,21 @@ logout = (req,resp,next)=> {
     userModel.getAll(req,resp);
 }
 
+//Get Users
+getAll = (req,resp,next)=> {
+    userModel.getAll(req,resp,next);
+}
+
+getById = (req,resp,next)=> {
+    userModel.getById(req,resp,next);
+}
+
 module.exports = {
     addUser : addUser,
     login : login,
     deleteUser : deleteUser,
     logout : logout,
+
+    getAll: getAll,
+    getById: getById
 }

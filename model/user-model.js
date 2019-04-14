@@ -33,24 +33,54 @@ addUser = (req, resp) => {
 }
 
 deleteUser = (req, resp) => {
-    console.log(u);
-    tactMongoDB().collection('user').insertOne(u)
+    
+    tactMongoDB().collection('user').deleteOne(u)
     .then(() => { })
     .catch((err) => { });
 }
 
+//Need to work on it
 login = (req, resp) => {
-    console.log(u);
+   
     tactMongoDB().collection('user').insertOne(u)
     .then(() => { })
     .catch((err) => { });
 }
 
+//Need to work on it
 logout = (req, resp) => {
-    console.log(u);
+    
     tactMongoDB().collection('user').insertOne(u)
     .then(() => { })
     .catch((err) => { });
+}
+
+
+getAll = (req,resp,next)=> {
+    tactMongoDB().collection('user').find({}).toArray()
+    .then((users) => { 
+        resp.status(200).json(users);
+    })
+    .catch((err) => {  
+        error = new Error();
+        error.message = "Error while finding users in databse";
+        error.data = err;
+        next(error);
+    })
+}
+
+getById = (req,resp,next)=> {
+
+    tactMongoDB().collection('user').find({ _id: new mongodb.ObjectID(req.params._id)}).toArray()
+    .then((user) => { 
+        resp.status(200).json(user);
+    })
+    .catch((err) => {  
+        error = new Error();
+        error.message = "Error while finding user in databse";
+        error.data = err;
+        next(error);
+    })
 }
 
 //==========================
@@ -58,6 +88,9 @@ module.exports = {
     addUser : addUser,
     login : login,
     deleteUser : deleteUser,
-    logout : logout
+    logout : logout,
+
+    getAll: getAll,
+    getById: getById
 }
 
