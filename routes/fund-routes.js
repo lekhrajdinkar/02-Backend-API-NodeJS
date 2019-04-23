@@ -8,7 +8,7 @@ const fundController = require('./Controller/fund-controller');
 
 
 //=================================================
-//  This router is get/put funds with MongoDatabase - CRUD
+//  This router is get/put funds with MongoDatabase - CRUD operation
 //=================================================
 
 //1 GET 
