@@ -115,7 +115,17 @@ const socketio = require('./util/socket');
 //const io = socketio.init(server);
 const io = require('socket.io')(server);
 io.on('connection', function(socket) {
-    console.log('client connected..', socket);
+    console.log('client connected..');
+
+    socket.on("reviewed", obj => {
+        console.log('reviewed listened, ng object :', obj)
+        socket.emit("nodeemit-r", {...obj, source : 'node'});
+    });
+
+    socket.on("approved", obj => {
+        console.log('Approver listened ng object', obj)
+        socket.emit("nodeemit-a", {...obj, source : 'node'});
+    });
 });
 
 console.log('TACT server running  on port - ', port);
