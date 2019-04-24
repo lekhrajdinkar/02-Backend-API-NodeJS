@@ -7,7 +7,7 @@ const mongoDBStore = require('connect-mongodb-session')(session);
 
 const morgan = require('morgan');
 const config = require('config');
-const tactMongoDB = require('./util/mongoDB')
+const tactMongoDB = require('./util/mongoDB');
 
 //const logger = require('./util/winston-logger');
 const winston = require('winston');
@@ -108,7 +108,16 @@ app.use((error, req, resp, next)=> {
 tactMongoDB.connect( () => {
 //adding dyanmic port
 const port = process.env.PORT  || 5000 ;
-app.listen(port);
+const server = app.listen(port);
+
+//initialize socket it
+const socketio = require('./util/socket');
+//const io = socketio.init(server);
+const io = require('socket.io')(server);
+io.on('connection', function(socket) {
+    console.log('client connected..', socket);
+});
+
 console.log('TACT server running  on port - ', port);
 //const server = http.createServer(app);
 //server.listen(4000);

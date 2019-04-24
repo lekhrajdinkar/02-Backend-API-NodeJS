@@ -17,6 +17,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.2.2",
     "morgan": "^1.9.1",
+    "socket.io": "^2.2.0",
     "swagger-jsdoc": "^3.2.8",
     "swagger-ui-express": "^4.0.2",
     "winston": "^3.2.1",
