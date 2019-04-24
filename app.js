@@ -1,6 +1,7 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
+let counter = 100;
 
 const session = require('express-session');
 const mongoDBStore = require('connect-mongodb-session')(session);
@@ -112,20 +113,16 @@ const server = app.listen(port);
 
 //initialize socket it
 const socketio = require('./util/socket');
-//const io = socketio.init(server);
-const io = require('socket.io')(server);
+const io = socketio.init(server);
+
 io.on('connection', function(socket) {
-    console.log('client connected..');
+console.log('client connected..');
 
-    socket.on("reviewed", obj => {
-        console.log('reviewed listened, ng object :', obj)
-        socket.emit("nodeemit-r", {...obj, source : 'node'});
-    });
-
-    socket.on("approved", obj => {
-        console.log('Approver listened ng object', obj)
-        socket.emit("nodeemit-a", {...obj, source : 'node'});
-    });
+    // socket.on("reviewer", obj => {
+    //     console.log('listened action from : ', obj.name)
+    //     console.log('emitting to client...')
+    //     socket.emit("nodeemit-r", {...obj, source : 'node' , user : obj.name});
+    // });
 });
 
 console.log('TACT server running  on port - ', port);

@@ -9,6 +9,7 @@ const jwt = require('jsonwebtoken');
 const config = require('config');
 const jwtMwe = require('./../util/mwe/jwt-mwe')
 const asyncTemplate = require('./../util/mwe/async-mwe');
+const socket = require('../util/socket');
 
 //================ TEST ============ START
 router.use('/welcome',(req,resp,next)=> {
@@ -35,8 +36,8 @@ router.get('/logout',(req,resp,next)=> {
 
 router.post('/login',async (req,resp,next)=> {
     let user_temp;
-    const user_req = req.body.initial || 'AAXL';
-    const pswd_req = req.body.password || '123456';
+    const user_req = req.body.initial ;
+    const pswd_req = req.body.password ;
 
     tactMongoDB().collection('login').find({ initial: user_req}).toArray()
     .then((user) => {
@@ -59,6 +60,10 @@ router.post('/login',async (req,resp,next)=> {
             config.get('jwt.secret'),
             {expiresIn:'1h'}
             );
+
+            //broadcast
+            socket.get().emit('newuser', {initial : user_req});
+            
             //req.session.jwt  = jwtToken;
 
             //2. send JWT to client inresponse.
