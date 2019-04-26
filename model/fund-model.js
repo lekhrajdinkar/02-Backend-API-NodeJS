@@ -34,7 +34,7 @@ getAllFunds = (req, resp) => {
     let pageSize = req.query['pageSize'] || 5;
     let sortBy = req.params['sortBy'] || 'num';
 
-    db.collection('funds').find({})
+    db.collection('order').find({})
 //Pagination
     .skip(+pageNumber - 1)
     .limit(+pageSize)
@@ -50,7 +50,7 @@ getAllFunds = (req, resp) => {
 
 getRecentFund = (resp) => {
     const db = tactMongoDB();
-    db.collection('funds').find({}).next() // last element in cursor.
+    db.collection('order').find({}).next() // last element in cursor.
     .then((funds) => { 
        resp.send(funds);
     })
@@ -61,7 +61,7 @@ getByUser = (req,resp) => {
     const db = tactMongoDB();
     //onsole.log('req.params.user', req.params.user);
     const filter = {created_by : req.params.user} ;
-    db.collection('funds').find(filter).toArray()
+    db.collection('order').find(filter).toArray()
     .then((funds) => { 
        resp.send(funds);
     })
@@ -71,7 +71,7 @@ getByUser = (req,resp) => {
 getById = (req,resp) => {
     const db = tactMongoDB();
     const filter = { _id : new mongodb.ObjectID(req.body._id)} ;
-    db.collection('funds').find(filter).toArray()
+    db.collection('order').find(filter).toArray()
     .then((funds) => { 
        resp.send(funds);
     })
@@ -82,7 +82,7 @@ getById = (req,resp) => {
 addFund = (fund) => {
     console.log(fund);
     const db = tactMongoDB();
-    db.collection('funds').insertOne(fund)
+    db.collection('order').insertOne(fund)
     .then(() => { })
     .catch((err) => { });
 }
@@ -92,7 +92,7 @@ addFund = (fund) => {
 deleteById = (req,resp) => {
     const db = tactMongoDB();
     const filter = { _id : new mongodb.ObjectID(req.body._id)} ;
-    db.collection('funds').deleteOne(filter)
+    db.collection('order').deleteOne(filter)
     .then((result) => { 
        console.log('Deleted ...', req.body._id); resp.send(result);
     })
@@ -103,7 +103,7 @@ deleteById = (req,resp) => {
 updateById = (req,resp) => {
     const db = tactMongoDB();
     const filter = { _id : new mongodb.ObjectID(req.body._id)} ;
-    db.collection('funds').updateOne(filter, {$set: {"abbr" : req.body.abbr, "num" : req.body.num } })
+    db.collection('order').updateOne(filter, {$set: {"abbr" : req.body.abbr, "num" : req.body.num } })
     .then((result) => { 
        console.log('updated ...', req.body._id); resp.send(result);
     })

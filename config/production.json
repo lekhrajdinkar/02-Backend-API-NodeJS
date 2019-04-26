@@ -1,10 +1,10 @@
 {
     "app-name":"TACT-production",
     "mongo":{
-        "url":"mongodb+srv://lekhrajdinkar:unclechips@cluster0-jer1o.gcp.mongodb.net/tact-prod?retryWrites=true"
+        "url":"mongodb+srv://lekhrajdinkar:unclechips@cluster0-jer1o.gcp.mongodb.net/mean-prod?retryWrites=true"
     },
     "mongo-tact":{
-        "url":"mongodb+srv://lekhrajdinkar:unclechips@tact-cluster-hpzsu.mongodb.net/tact-prod?retryWrites=true",
-        "express-store-uri":"mongodb+srv://lekhrajdinkar:unclechips@tact-cluster-hpzsu.mongodb.net/tact-prod"
+        "url":"mongodb+srv://lekhrajdinkar:unclechips@tact-cluster-hpzsu.mongodb.net/mean-prod?retryWrites=true",
+        "express-store-uri":"mongodb+srv://lekhrajdinkar:unclechips@tact-cluster-hpzsu.mongodb.net/mean-prod"
     }
 }

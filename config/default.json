@@ -2,7 +2,7 @@
     "developer":{
         "name": "lekhraj", "age":"27"
     },
-    "app-name":"TACT",
+    "app-name":"MEAN-nodejs",
     "email":{
         "host":"lekhrajdinkar@gmail.com",
         "password":"dummy",

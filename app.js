@@ -37,7 +37,7 @@ if(config.get('log.enable-mongo') == 'true'){
 //MWE - express session with mongoDB store
 const mongoSessionstore = new mongoDBStore({ 
     uri : config.get('mongo-tact.express-store-uri'), 
-    collection:"tact-sessions"
+    collection:"app-sessions"
 })
 
 options =  {
@@ -57,7 +57,7 @@ app.use(express.json());
 app.use(express.urlencoded());
 
 //MWE - to print url, req body,etc
-app.use((req,resp,next)=> {console.log('log REQ body MWE :  > ', req.body, req.url, req.method); next();});
+//app.use((req,resp,next)=> {console.log('log REQ body MWE :  > ', req.body, req.url, req.method); next();});
 
 // config pkg - testing
 console.log('Application name - ' , config.get('app-name'));

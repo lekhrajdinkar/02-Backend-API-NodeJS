@@ -23,7 +23,7 @@ getAllUnderlyingFunds = (req, resp) => {
     let pageSize = req.query['pageSize'] || 10;
     let sortBy = req.query['sortBy'] || 'num';
 
-    db.collection('underlying-funds').find({fof_id : req.params.fof_id})
+    db.collection('order-items').find({fof_id : req.params.fof_id})
 //Pagination
     .skip(+pageNumber - 1)
     .limit(+pageSize)
@@ -31,7 +31,7 @@ getAllUnderlyingFunds = (req, resp) => {
 
     .toArray()
     .then((uf) => { 
-        console.log('underlying-funds : ' , uf);
+        console.log('order-items : ' , uf);
         resp.status(200).json(uf); //json() will automatically add content-type as json.
     })
     .catch((err) => { throw err ;});
@@ -41,7 +41,7 @@ getAllUnderlyingFunds = (req, resp) => {
 addUF = (uf) => {
     console.log(uf);
     const db = tactMongoDB();
-    db.collection('underlying-funds').insertOne(uf)
+    db.collection('order-item').insertOne(uf)
     .then(() => { })
     .catch((err) => { });
 }
