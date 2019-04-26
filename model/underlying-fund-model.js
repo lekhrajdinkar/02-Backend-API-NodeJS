@@ -23,7 +23,7 @@ getAllUnderlyingFunds = (req, resp) => {
     let pageSize = req.query['pageSize'] || 10;
     let sortBy = req.query['sortBy'] || 'num';
 
-    db.collection('order-items').find({fof_id : req.params.fof_id})
+    db.collection('order-item').find({fof_id : req.params.fof_id})
 //Pagination
     .skip(+pageNumber - 1)
     .limit(+pageSize)
